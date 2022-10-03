@@ -3,6 +3,7 @@ package main
 import (
   "bufio"
   "fmt"
+  "flag"
   "strings"
   "log"
   "math/rand"
@@ -16,10 +17,14 @@ type Term struct {
 }
 
 func main() {
-  terms := scanFile()
-  rand.Seed(time.Now().UnixMilli())
+  var location = flag.String("f", "pojmy.txt", "Text file location")
+  flag.Parse()
+
+  terms := scanFile(location)
   used := make([]Term, 0)
-  fmt.Print("\033[H\033[2J") // clear terminal
+  
+  rand.Seed(time.Now().UnixMilli())
+  fmt.Print("\033[H\033[2J") // clear unix terminal
 
   for len(terms) != len(used) {
     if term := terms[rand.Intn(len(terms))]; !contains(used, term) {
@@ -34,9 +39,12 @@ func main() {
 
 }
 
-func scanFile() []Term {
+func scanFile(location *string) []Term {
   pojmy := make([]Term, 0)
-  file, err := os.Open("/home/matt/Code/slepa-mapa/pojmy.txt")
+  
+  path, _ := os.Getwd()
+
+  file, err := os.Open(fmt.Sprintf("%s/%s", path, *location))
   if err != nil { log.Fatal(err) }
   defer file.Close() 
   scanner := bufio.NewScanner(file)
