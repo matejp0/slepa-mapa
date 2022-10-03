@@ -8,47 +8,60 @@ import (
   "math/rand"
   "time"
   "os"
-  "golang.org/x/exp/slices"
 )
+
+type Term struct {
+  topic string
+  value string
+}
 
 func main() {
   terms := scanFile()
   rand.Seed(time.Now().UnixMilli())
-  used := make([]string, 0)
+  used := make([]Term, 0)
   fmt.Print("\033[H\033[2J") // clear terminal
-  for true {
-    if(len(terms) == len(used)) { 
-      fmt.Println("Done")
-      break
-    }
-    
-    if term := terms[rand.Intn(len(terms))]; !slices.Contains(used, term) {
+
+  for len(terms) != len(used) {
+    if term := terms[rand.Intn(len(terms))]; !contains(used, term) {
       used = append(used, term)
-      percent := 100*len(used)/len(terms)
-      fmt.Printf("[%d%%] %v", percent, term)
+      fmt.Printf("[%d%%] %s: %s", 100*len(used)/len(terms), term.topic, term.value)
     } else {
       continue
     }
+
     fmt.Scanln()
   }
 
 }
 
-func scanFile() []string {
-  pojmy := make([]string, 0)
+func scanFile() []Term {
+  pojmy := make([]Term, 0)
   file, err := os.Open("/home/matt/Code/slepa-mapa/pojmy.txt")
   if err != nil { log.Fatal(err) }
-  defer file.Close()
-  
+  defer file.Close() 
   scanner := bufio.NewScanner(file)
+
   for scanner.Scan() {
     arr := strings.Split(scanner.Text(), ": ")
-    category := arr[0]
     names := strings.Split(arr[1], ", ")
+
     for _, name := range names {
-      pojmy = append(pojmy, fmt.Sprintf("%s: %s", category, name))
+      pojmy = append(pojmy, Term{
+        topic: arr[0],
+        value: name,
+      })
     }
   }
+
   if err := scanner.Err(); err != nil { log.Fatal(err) }
   return pojmy
+}
+
+func contains(list []Term, term Term) bool {
+  for _, v := range list {
+    if v == term {
+      return true
+    }
+  }
+  return false
 }
