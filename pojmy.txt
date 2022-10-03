@@ -1,0 +1,11 @@
+Amerika: Středoamerický příkop, Atacamský příkop, Tehuantepecká šíje, Panamská šíje, Panamský průplav
+Moře: Beringovo, Čukotské, Beaufortovo, Baffinovo, Grónské, Labradorské, Sargasové, Karibské
+Zálivy: Kalifornský, Aljašský, Hudsonův, Sv. Vavřince, Mexický, La Plata
+Průlivy: Beringův, Hudsonův, Davisův, Dánský, Cabotův, Floridský, Drakeův, Magalhaesův
+Ostrovy: Aleuty, Viktoriin, Baffinův, Grónsko, Bahamy, Velké Antily – Kuba, Hispaniola, Jamajka, Portoriko, Malé Antily, Galapágy, Falklandy (Malvíny), Ohňová země
+Poloostrovy: Aljaška, Labrador, Florida, Kalifornský, Yucatan
+Nížiny: Arktická, Pobřežní, Mississippská, Amazonská, Laplatská, Orinocká
+Pohoří: Laurentinská vysočina (plošina), Velké planiny, Koloradská plošina, Velká pánev, Mohavská poušť - Údolí smrti, Mexická plošina, Appalačské pohoří, Kordillery – Denali (Mount McKinley), Aljašské hory, Mackenzieovo pohoří, Skalnaté hory, Pobřežní pásmo, Kaskádové pohoří, Sierra Nevada, Sierra Madre Occidental, Sierra Madre Oriental, Popocatepetl, Andy – Aconcagua, Cotopaxi, Chimborazo, Patagonská tabule, Guyanská vysočina, Brazilská vysočina, Atacama
+Řeky: Yukon, Athabaska-Mackenzie, Saskatchewan-Nelson, Sv. Vavřince, Mississippi – Missouri, Ohio, Columbia – Snake, Sacramento, Colorado – Velký kaňon (Grand Canyon), Rio Grande, Orinoko, Amazonka – Ucayali, Madeira, Negro, Maraňon, Uruguay, Parana-Paranaiba
+Jezera: Velké Medvědí, Velké Otročí, Athabaska, Winnipežské, Velká jezera – Hořejší, Michiganské, Huronské, Erijské, Ontario, Nikaragua, Maracaibo, Titicaca, Poopo
+Vodopády: Niagarské, Angelův, Iguacú
