@@ -15,12 +15,17 @@ func main() {
   terms := scanFile()
   rand.Seed(time.Now().UnixMilli())
   used := make([]string, 0)
+  fmt.Print("\033[H\033[2J") // clear terminal
   for true {
-    if(len(terms) == len(used)) { break }
-    term := terms[rand.Intn(len(terms))]
-    if !slices.Contains(used, term) {
-      fmt.Print("[", 100*len(used)/len(terms), "%] ", term)
+    if(len(terms) == len(used)) { 
+      fmt.Println("Done")
+      break
+    }
+    
+    if term := terms[rand.Intn(len(terms))]; !slices.Contains(used, term) {
       used = append(used, term)
+      percent := 100*len(used)/len(terms)
+      fmt.Printf("[%d%%] %v", percent, term)
     } else {
       continue
     }
