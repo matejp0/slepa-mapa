@@ -9,6 +9,7 @@ import (
   "math/rand"
   "time"
   "os"
+  "sort"
 )
 
 type Term struct {
@@ -21,22 +22,34 @@ func main() {
   flag.Parse()
 
   terms := scanFile(location)
-  used := make([]Term, 0)
-  
+  //used := make([]Term, 0)
+  used := make(map[Term]int64)
+
   rand.Seed(time.Now().UnixMilli())
   fmt.Print("\033[H\033[2J") // clear unix terminal
 
   for len(terms) != len(used) {
-    if term := terms[rand.Intn(len(terms))]; !contains(used, term) {
-      used = append(used, term)
+    i := rand.Intn(len(terms))
+    term := terms[i]
+    var start int64
+    if used[term] == 0 {
+      start = time.Now().UnixMilli()
       fmt.Printf("[%d%%] %s: %s", 100*len(used)/len(terms), term.topic, term.value)
+      fmt.Scanln()
+      used[term] = time.Now().UnixMilli() - start
     } else {
       continue
     }
-
-    fmt.Scanln()
   }
+  sort.SliceStable(terms, func(i, j int) bool{
+    return used[terms[i]] > used[terms[j]]
+  })
 
+  fmt.Println("=============================")
+
+  for i := 0; i < len(terms) / 5; i++ {
+    fmt.Printf("%s: %s (%d)\n", terms[i].topic, terms[i].value, used[terms[i]])
+  }
 }
 
 func scanFile(location *string) []Term {
