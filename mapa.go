@@ -18,7 +18,7 @@ type Term struct {
 }
 
 func main() {
-  var location = flag.String("f", "pojmy.txt", "Text file location")
+  var location = flag.String("f", "pojmy.md", "Text file location")
   flag.Parse()
 
   terms := scanFile(location)
@@ -27,6 +27,7 @@ func main() {
 
   rand.Seed(time.Now().UnixMilli())
   fmt.Print("\033[H\033[2J") // clear unix terminal
+  fmt.Println("Počet pojmů:", len(terms))
 
   for len(terms) != len(used) {
     i := rand.Intn(len(terms))
@@ -48,7 +49,7 @@ func main() {
   fmt.Println("=============================")
 
   for i := 0; i < len(terms) / 5; i++ {
-    fmt.Printf("%s: %s (%d)\n", terms[i].topic, terms[i].value, used[terms[i]])
+    fmt.Printf("%s: %s (%dms) \n", terms[i].topic, terms[i].value, used[terms[i]])
   }
 }
 
@@ -64,6 +65,7 @@ func scanFile(location *string) []Term {
 
   for scanner.Scan() {
     arr := strings.Split(scanner.Text(), ": ")
+    if (arr[0][0] == '#') {continue}
     names := strings.Split(arr[1], ", ")
 
     for _, name := range names {
